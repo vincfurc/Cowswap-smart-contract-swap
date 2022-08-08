@@ -6,7 +6,8 @@ def main():
 
     dev = accounts.from_mnemonic(config["wallets"]["from_mnemonic"])
     # dev = accounts[0]
-    cowContract = CowContract.deploy({'from':dev}, publish_source =True)
+    cowContract = CowContract.deploy({'from':dev}) 
+    # cowContract = CowContract.deploy({'from':dev}, publish_source = True)
     print("Deploy complete, contract deployed at: {}".format(cowContract.address))
 
     module_address = cowContract.address
@@ -92,3 +93,12 @@ def main():
 
     # With the order id, we set the flag, basically signing as the contract.
     cowContract.sendSetSignatureTx(order_uid, True,{'from': dev})
+
+    # order can be seen here: https://api.cow.fi/docs/#/default/get_api_v1_orders__UID_
+
+    # https://docs.cow.fi/tutorials/cowswap-trades-with-a-gnosis-safe-wallet
+    # Alternatives:
+    # https://docs.1inch.io/docs/limit-order-protocol/guide/create-limit-order/
+    # https://docs.0x.org/0x-api-swap/guides/use-0x-api-liquidity-in-your-smart-contracts
+
+
